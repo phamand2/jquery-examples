@@ -11,7 +11,19 @@
     HINT: lookup .val()
     */
     $(function () {
-      // write your code here
+      
+      
+      $('#clear-button').click(function(e){
+        e.preventDefault
+        $('#text-field').val('')
+      })
+
+      $('#save-button').click(function(e){
+        $('#log').append(`<li>${$('#text-field').val()}</li>`)
+      
+      })
+      
+    
     });
     </script>
   </head>

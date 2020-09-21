@@ -13,6 +13,11 @@
     */
     $(function() {
       // Write code here
+      $('a').click(function(e){
+        e.preventDefault()
+        let link = $(this).attr('href')
+        $('#iframe').attr('src', link)
+      })
     });
     </script>
   </head>

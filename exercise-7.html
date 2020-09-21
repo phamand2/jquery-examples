@@ -5,6 +5,67 @@
     <title></title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
+    $(function() {
+    
+
+        
+      $('#add-button').click(function(e){
+        e.preventDefault()
+
+        var $delete = $('<button>', {
+          'text': 'X'
+          }); 
+
+        var $edit = $('<button>', {
+          'text': 'Edit',
+        })
+
+        var $editField = $('<input>', {
+          'type': 'text',
+          
+        })
+
+        var $submitBtn  = $('<button>', {
+          'text': 'Save'
+        })
+
+        $delete.on('click',function(){
+          $(this).parent().remove()
+
+        })
+
+        $edit.click(function(){
+          $(this).parent().append($edit)
+          $(this).hide()
+          $editField.show()
+          $submitBtn.show()
+                  
+        })
+
+        let $list = $(`<li><input class='listItem' type='checkbox'><span>${$('#description').val()}</span></li>`).append($delete).append($edit).append($editField).append($submitBtn)
+
+
+        $submitBtn.click(function(){
+          $list.children('span').text($editField.val())
+          $editField.hide()
+          $submitBtn.hide()
+          $edit.show()
+        })
+
+        $editField.hide()
+        $submitBtn.hide()
+
+        $('#todo-list').click(function(e){
+          let changeList = $(this).siblings('.change').val();
+          $(this).parent().children('.listItem').text(changeList)
+        })
+
+
+        
+        $('#todo-list').append($list)
+      
+      })
+    })
     /*
     Make a Todo List
 
@@ -32,7 +93,6 @@
       <input id="description" type="text" name="description">
       <button id="add-button">Add Task</button>
       <ul id="todo-list">
-        <li>Feed the cat</li>
       </ul>
     </div>
   </body>
